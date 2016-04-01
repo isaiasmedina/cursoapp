@@ -1,0 +1,10 @@
+<div class="container inventario">
+	<ul class="collection">
+		<li class="collection-item avatar square" ng-repeat="item in inventario">
+		  <img ng-src="{{item.imagen}}" alt="{{item.modelo}}" class="square">
+		  <span class="title">{{item.nombre}}</span>
+		  <p>{{item.modelo}}</p>
+		  <a href="#/maquinaria/{{item.id}}" class="secondary-content btn light-blue darken-4"><i class="fa fa-plus"></i></a>
+		</li>
+	</ul>
+</div>

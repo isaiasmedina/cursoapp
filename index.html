@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="app" ng-controller="indexController">
+	<head> 
+		<title ng-bind="tituloapp">Generando aplicacion...</title>
+		<link rel="stylesheet"  href="css/materialize.css">
+		 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet"  href="css/font-awesome.min.css">
+		<link rel="stylesheet"  href="css/style.css">
+		<!--https://raw.githubusercontent.com/IamAdamJowett/angular-click-outside/master/clickoutside.directive.js-->
+	</head> 
+
+	<body >
+		<header>
+			<nav>
+				<div class="nav-wrapper tekoestudio">
+				  <a href="#/" class="brand-logo"><img src="images/tekoestudio-white.png"></a>
+				  <a href="#" class="button-collapse show-on-large" ng-click="mostrarSideNav($event)"><i class="material-icons">menu</i></a>
+				</div>
+			</nav>
+			<ul id="slide-out" class="side-nav fixed-nav {{clase}}">
+				<li class="nav-head"><a href="#/" ng-click="mostrarSideNav($event)"><i class="fa fa-arrow-left"></i> <span>CERRAR MENU</span></a></li>
+				<li class="menuitem"><a href="#/" ng-click="regresarHome()"><i class="fa fa-list-ol"></i>Inventario</a></li>
+				<li class="menuitem"><a href="#/perfil"><i class="fa fa-user"></i>Perfil</a></li>
+			</ul>
+			
+		</header>
+		<div ng-view="">
+		</div>
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-animate.min.js"></script>
+		<script src="js/angular-route.min.js"></script>
+		<script src="js/clickOutside.js"></script>
+		<script src="js/modelo.js"></script>
+	</body>
+</html>

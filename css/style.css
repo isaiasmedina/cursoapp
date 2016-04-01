@@ -1,0 +1,63 @@
+nav .button-collapse {
+  margin: 0 15px;
+}
+
+.tekoestudio{
+	background:#48D2FF !important;
+}
+
+.brand-logo img{
+	width:75%;
+}
+
+
+.fixed-nav{
+	transition:all 0.5s ease;
+	position:fixed;
+}
+.fixed-esconder{	
+	left:-80%;
+}
+.fixed-mostrar{
+	left:0;
+}
+
+.nav-head i {
+  border: 1px solid #dedede;
+  font-size: 23px;
+  margin: 0 10px 0 0;
+  padding: 20px;
+}
+
+.nav-head a,.menuitem a {
+  line-height: 0;
+  padding: 0 !important;
+}
+
+.nav-head,.menuitem {
+  border-bottom: 1px solid #dedede;
+  padding: 0 !important;
+}
+
+.menuitem i {
+  color: #707070;
+  font-size: 23px;
+  margin: 0 10px 0 0;
+  padding: 21px;
+}
+
+
+.collection .collection-item.avatar.square .square {
+  background: #dedede none repeat scroll 0 0;
+  display: inline-block;
+  height: 63px;
+  left: 8px;
+  overflow: hidden;
+  position: absolute;
+  vertical-align: middle;
+  width: 100px;
+}
+
+.collection .collection-item.avatar.square{
+	padding-left:120px;
+}
