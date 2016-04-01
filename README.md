@@ -1,2 +1,2 @@
 # cursoapp
-Archivos del Curso I de Angula + Ionic
+Archivos del Curso I de AngularJS + Ionic
