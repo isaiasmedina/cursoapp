@@ -61,3 +61,32 @@ nav .button-collapse {
 .collection .collection-item.avatar.square{
 	padding-left:120px;
 }
+
+.modal.modal-open{
+  display: block;
+  opacity: 1;
+  top: 10%;
+  transform: scaleX(1);
+  z-index: 1003;	
+}
+
+
+.overlay.overlay-open{
+  background: #000 none repeat scroll 0 0;
+  height: 100%;
+  left: 0;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1002;
+  display:block !important;
+	
+}
+
+.overlay {
+ display:none; 
+ transition:all .5s ease;
+ opacity:0;
+}
+

@@ -26,6 +26,17 @@
 		</header>
 		<div ng-view="">
 		</div>
+		<div id="modal1" class="modal modal-fixed-footer {{claseM}}" click-outside="closeThis()" outside-if-not="mostrar">
+			<div class="modal-content">
+			  <h4>Modal Header</h4>
+			  <p>A bunch of text</p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" ng-click="ocultarModal($event)" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+			</div>
+		</div>
+		<div class="overlay {{claseO}}"></div>
+		<a href="#" id="mostrar" ng-click="mostrarModal($event)">Mostrar</a>
 		<script src="js/angular.min.js"></script>
 		<script src="js/angular-animate.min.js"></script>
 		<script src="js/angular-route.min.js"></script>

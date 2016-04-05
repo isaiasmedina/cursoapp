@@ -1,4 +1,4 @@
-angular.module('app',['ngRoute','ngAnimate'])
+angular.module('app',['ngRoute','ngAnimate','angular-click-outside'])
 .config(function($routeProvider){
 	$routeProvider
 		.when("/",{
@@ -12,7 +12,29 @@ angular.module('app',['ngRoute','ngAnimate'])
 			templateUrl: "vistas/perfil.html"
 		}).otherwise({redirectTo:'/'})
 
-}).controller('indexController', ['$scope',function ($scope){
+}).controller('modalController', ['$scope',function ($scope){
+	
+
+}]).controller('indexController', ['$scope',function ($scope){
+	
+	$scope.closeThis=function(){
+		if($scope.claseM=="modal-open"){
+			alert('Estoy abierto')
+			
+		}
+	}
+	
+	$scope.mostrarModal=function($event){
+		$scope.claseM = "modal-open";
+		$scope.claseO= "overlay-open";
+		$event.preventDefault()
+	}
+	$scope.ocultarModal=function($event){
+		$scope.claseM="";
+		$scope.claseO="";
+		$event.preventDefault()
+	}
+	
 	$scope.mostrarSideNav = function($event){
 		if ($scope.clase === "fixed-esconder")
 		  $scope.clase = "fixed-mostrar";
