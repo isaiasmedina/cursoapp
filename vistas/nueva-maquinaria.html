@@ -1,0 +1,17 @@
+<h3>Agregar Nueva Maquinaria</h3>
+<div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Nombre de la maquinaria" type="text" class="validate" ng-model="form.nombre">
+        </div>
+		 <div class="input-field col s12">
+          <input placeholder="Modelo" type="text" class="validate" ng-model="form.modelo">
+        </div>
+	  </div>
+	  <button class="btn light-blue darken-4" type="submit" name="action" ng-click="enviar()"><i class="fa fa-floppy-o "></i> Guardar</button>
+	</form>
+	<p>{{form.nombre}}</p>
+	<p>{{form.modelo}}</p>
+</div>
+	  

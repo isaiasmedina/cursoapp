@@ -10,12 +10,15 @@ angular.module('app',['ngRoute','ngAnimate','angular-click-outside'])
 		}).when("/perfil",{
 			controller:"perfilController",
 			templateUrl: "vistas/perfil.html"
+		}).when("/nueva",{
+			controller:"nuevaController",
+			templateUrl: "vistas/nueva-maquinaria.html"
 		}).otherwise({redirectTo:'/'})
 
 }).controller('modalController', ['$scope',function ($scope){
 	
 
-}]).controller('indexController', ['$scope',function ($scope){
+}]).controller('indexController', ['$scope','$http',function ($scope,$http){
 	
 	$scope.closeThis=function(){
 		if($scope.claseM=="modal-open"){
@@ -52,15 +55,37 @@ angular.module('app',['ngRoute','ngAnimate','angular-click-outside'])
 	$scope.cambiarTitulo= function(nTitulo){
 		$scope.tituloapp=$scope.titulo + " | " +  nTitulo;
 	}
+		fd="";
+		$scope.datosmaq=$http.post('http://tekoapp.com/curso/rest/',fd,{transformRequest: angular.identity,headers: {'Content-Type': undefined}
+            }).success(function(response){
+			console.log(response)
+		});
+		
+	
 	$scope.inventario = [
-		{id:1,nombre:"Maquina 1", modelo:"AAA-323232-56",imagen:"http://img.directindustry.com/images_di/photo-g/63803-2798197.jpg"},
-		{id:2,nombre:"Maquina 2", modelo:"AAA-323232-98",imagen:"http://www.textileworld.com/Articles/2012/Septiembre_Octubre_de_2012/Pics/France.jpg"},
-		{id:3,nombre:"Maquina 3", modelo:"AAA-323245-23",imagen:"http://img.directindustry.com/images_di/photo-g/63803-2798197.jpg"},
+		{id:"1",nombre:"Maquina 1", modelo:"AAA-323232-56",imagen:"http://img.directindustry.com/images_di/photo-g/63803-2798197.jpg"},
+		{id:"2",nombre:"Maquina 2", modelo:"AAA-323232-98",imagen:"http://www.textileworld.com/Articles/2012/Septiembre_Octubre_de_2012/Pics/France.jpg"},
+		{id:"3",nombre:"Maquina 3", modelo:"AAA-323245-23",imagen:"http://img.directindustry.com/images_di/photo-g/63803-2798197.jpg"},
 	];
+	console.log($scope.inventario);
+	console.log($scope.datosmaq);
 
 }]).controller('inventarioController', ['$scope',function ($scope){
 	$scope.OcultarSideNav();
 	$scope.cambiarTitulo("Listados de Maquinaria")
+}]).controller('nuevaController', ['$scope','$http',function ($scope,$http){
+	$scope.OcultarSideNav();
+	$scope.enviar=function(){
+		var nombre= $scope.form.nombre;
+		var modelo= $scope.form.modelo;
+		var fd = new FormData();
+		fd.append('nombre', nombre);
+		fd.append('modelo', modelo);
+		$http.post('http://tekoapp.com/curso/rest/POST',fd,{transformRequest: angular.identity,headers: {'Content-Type': undefined}
+            }).success(function(response){
+			console.log(response)
+		});
+	}
 }]).controller('maquinariaController', ['$scope','$routeParams',function ($scope,$routeParams){
 	$scope.OcultarSideNav();
 	$scope.cambiarTitulo("Detalle de Maquinaria")
