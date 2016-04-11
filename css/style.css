@@ -90,3 +90,6 @@ nav .button-collapse {
  opacity:0;
 }
 
+label {
+  top: -10px !important;
+}

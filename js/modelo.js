@@ -14,8 +14,21 @@ angular.module('app',['ngRoute','ngAnimate','angular-click-outside'])
 			controller:"nuevaController",
 			templateUrl: "vistas/nueva-maquinaria.html"
 		}).otherwise({redirectTo:'/'})
+}).directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
 
-}).controller('modalController', ['$scope',function ($scope){
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]).controller('modalController', ['$scope',function ($scope){
 	
 
 }]).controller('indexController', ['$scope','$http',function ($scope,$http){
@@ -55,37 +68,38 @@ angular.module('app',['ngRoute','ngAnimate','angular-click-outside'])
 	$scope.cambiarTitulo= function(nTitulo){
 		$scope.tituloapp=$scope.titulo + " | " +  nTitulo;
 	}
-		fd="";
-		$scope.datosmaq=$http.post('http://tekoapp.com/curso/rest/',fd,{transformRequest: angular.identity,headers: {'Content-Type': undefined}
+		$scope.datosmaq=$http.post('http://tekoapp.com/curso/rest/',"",{transformRequest: angular.identity,headers: {'Content-Type': undefined}
             }).success(function(response){
-			console.log(response)
+			$scope.inventario=response;
 		});
 		
-	
-	$scope.inventario = [
-		{id:"1",nombre:"Maquina 1", modelo:"AAA-323232-56",imagen:"http://img.directindustry.com/images_di/photo-g/63803-2798197.jpg"},
-		{id:"2",nombre:"Maquina 2", modelo:"AAA-323232-98",imagen:"http://www.textileworld.com/Articles/2012/Septiembre_Octubre_de_2012/Pics/France.jpg"},
-		{id:"3",nombre:"Maquina 3", modelo:"AAA-323245-23",imagen:"http://img.directindustry.com/images_di/photo-g/63803-2798197.jpg"},
-	];
-	console.log($scope.inventario);
-	console.log($scope.datosmaq);
 
 }]).controller('inventarioController', ['$scope',function ($scope){
 	$scope.OcultarSideNav();
 	$scope.cambiarTitulo("Listados de Maquinaria")
-}]).controller('nuevaController', ['$scope','$http',function ($scope,$http){
+}]).controller('nuevaController', ['$scope','$http','$rootScope',function ($scope,$http,$rootScope){
 	$scope.OcultarSideNav();
+	
+   
+	
 	$scope.enviar=function(){
 		var nombre= $scope.form.nombre;
 		var modelo= $scope.form.modelo;
+		var imagen= $scope.form.imagen;
 		var fd = new FormData();
 		fd.append('nombre', nombre);
 		fd.append('modelo', modelo);
+		fd.append('imagen', imagen);
+		console.log(imagen)
 		$http.post('http://tekoapp.com/curso/rest/POST',fd,{transformRequest: angular.identity,headers: {'Content-Type': undefined}
             }).success(function(response){
-			console.log(response)
+			$scope.form={}
+			
 		});
 	}
+	
+	
+	
 }]).controller('maquinariaController', ['$scope','$routeParams',function ($scope,$routeParams){
 	$scope.OcultarSideNav();
 	$scope.cambiarTitulo("Detalle de Maquinaria")
